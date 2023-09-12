@@ -90,9 +90,14 @@ class cs5600_6600_f23_hw02_uts(unittest.TestCase):
 ### ================ Unit Tests ====================
 
 if __name__ == '__main__':
-    unittest.main()
+    # unittest.main()
 
-
+    num_iters = 500
+    thresh = 0.4
+    and_wmats = train_3_layer_nn(num_iters, X1, y_and, build_231_nn)
+    print('\nTraining & Testing 2x3x1 AND ANN Thresholded at {} for {} iters'.format(thresh, num_iters))
+    for i in range(len(X1)):
+        print('{}, {} --> {}'.format(X1[i], fit_3_layer_nn(X1[i], and_wmats), y_and[i]))
  
     
         
