@@ -43,14 +43,15 @@ class cs5600_6600_f23_hw02_uts(unittest.TestCase):
     #         assert (fit_4_layer_nn(X1[i], and_wmats, thresh=0.4, thresh_flag=True) == y_and[i]).all()
     #     print('\n')            
 
-    # def test_assgn_02_ut_05(self, thresh=0.4):
-    #     num_iters = 500
-    #     or_wmats = train_3_layer_nn(num_iters, X1, y_or, build_231_nn)
-    #     print('\nTraining & Testing 2x3x1 OR ANN Thresholded at {} for {} iters'.format(thresh, num_iters))    
-    #     for i in range(len(X1)):
-    #         print('{}, {} --> {}'.format(X1[i], fit_3_layer_nn(X1[i], or_wmats), y_or[i]))
-    #         assert (fit_3_layer_nn(X1[i], or_wmats, thresh=0.4, thresh_flag=True) == y_or[i]).all()
-    #     print('\n')
+    def test_assgn_02_ut_05(self, thresh=0.4):
+        num_iters = 500
+        or_wmats = train_3_layer_nn(num_iters, X1, y_or, build_231_nn)
+        print('\nTraining & Testing 2x3x1 OR ANN Thresholded at {} for {} iters'.format(thresh, num_iters))    
+        for i in range(len(X1)):
+            print('{}, {} --> {}'.format(X1[i], fit_3_layer_nn(X1[i], or_wmats), y_or[i]))
+            assert (fit_3_layer_nn(X1[i], or_wmats, thresh=0.4, thresh_flag=True) == y_or[i]).all()
+        print('\n')
+
     # def test_assgn_02_ut_06(self, thresh=0.4):
     #     num_iters = 700        
     #     xor_wmats = train_4_layer_nn(num_iters, X1, y_xor, build_2331_nn)
@@ -60,14 +61,14 @@ class cs5600_6600_f23_hw02_uts(unittest.TestCase):
     #         assert (fit_4_layer_nn(X1[i], xor_wmats, thresh=0.4, thresh_flag=True) == y_xor[i]).all()
     #     print('\n')
 
-    # def test_assgn_02_ut_07(self, thresh=0.4):
-    #     num_iters = 500        
-    #     not_wmats = train_3_layer_nn(num_iters, X2, y_not, build_121_nn)
-    #     print('\nTraining & Testing 1x2x1 NOT ANN Thresholded at {} for {} iters'.format(thresh, num_iters))        
-    #     for i in range(len(X2)):
-    #         print('{}, {} --> {}'.format(X2[i], fit_3_layer_nn(X2[i], not_wmats), y_not[i]))
-    #         assert (fit_3_layer_nn(X2[i], not_wmats, thresh=0.4, thresh_flag=True) == y_not[i]).all()
-    #     print('\n')
+    def test_assgn_02_ut_07(self, thresh=0.4):
+        num_iters = 500        
+        not_wmats = train_3_layer_nn(num_iters, X2, y_not, build_121_nn)
+        print('\nTraining & Testing 1x2x1 NOT ANN Thresholded at {} for {} iters'.format(thresh, num_iters))        
+        for i in range(len(X2)):
+            print('{}, {} --> {}'.format(X2[i], fit_3_layer_nn(X2[i], not_wmats), y_not[i]))
+            assert (fit_3_layer_nn(X2[i], not_wmats, thresh=0.4, thresh_flag=True) == y_not[i]).all()
+        print('\n')
 
     # def test_assgn_02_ut_08(self, thresh=0.4):
     #     num_iters = 800       
@@ -98,6 +99,7 @@ if __name__ == '__main__':
     print('\nTraining & Testing 2x3x1 AND ANN Thresholded at {} for {} iters'.format(thresh, num_iters))
     for i in range(len(X1)):
         print('{}, {} --> {}'.format(X1[i], fit_3_layer_nn(X1[i], and_wmats), y_and[i]))
+    print('\n')  
  
     
         
