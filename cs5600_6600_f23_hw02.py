@@ -78,25 +78,34 @@ def build_1221_nn():
 def train_3_layer_nn(numIters, X, y, build):
     ## Build the nn
     weight_matrices = build()
-    w1 = weight_matrices[0]
-    w2 = weight_matrices[1]
+    w1 = np.array(weight_matrices[0])
+    w2 = np.array(weight_matrices[1])
 
     for i in range(numIters):
-        # Find estimated truth
-        z2 = np.dot(X,w1)
-        a2 = sigmoidf(z2)
-        z3 = np.dot(a2,w2)
-        yHat = sigmoidf(z3)
-        # Back Propagate Errors
-        yHat_error = y-yHat
-        yHat_delta = yHat_error * sigmoidf_prime(yHat)
-        a2_error = np.dot(yHat_delta,w2.T)
-        a2_delta = a2_error * sigmoidf_prime(a2)
-        w2_delta = np.dot(a2.T,yHat_delta)
-        w1_delta = np.dot(X.T,a2_delta)
-        # Adjust weights
-        w1 = w1 + w1_delta
-        w2 = w2 + w2_delta
+        for j in range(len(X)):          
+            x = np.array([X[j]])
+            # Feed Forward
+            z2 = np.dot(x,w1)
+            a2 = sigmoidf(z2)
+            z3 = np.dot(a2,w2)
+            yHat = sigmoidf(z3)
+            # Back Propagate Errors
+            yHat_error = y[j]-yHat
+            yHat_delta = yHat_error * sigmoidf_prime(yHat)
+            a2_error = np.dot(yHat_delta, w2.T)
+            a2_delta = a2_error * sigmoidf_prime(a2)
+            w2_delta = np.dot(a2.T, yHat_delta)
+            w1_delta = np.dot(x.T,a2_delta)
+            # Adjust weights
+            w1 = w1 + w1_delta
+            w2 = w2 + w2_delta
+
+            # print(f"x: {x}")
+            # print(f"w1: {w1}")
+            # print(f"w2: {w2}")
+            # print(f"y: {y[j]}")
+            # print(f"yHat: {yHat}")
+
 
     ## Return trained matrices
     return tuple([w1, w2])
@@ -109,27 +118,29 @@ def train_4_layer_nn(numIters, X, y, build):
     w3 = weight_matrices[2]
 
     for i in range(numIters):
-        # Find estimated truth
-        z2 = np.dot(X,w1)
-        a2 = sigmoidf(z2)
-        z3 = np.dot(a2,w2)
-        a3 = sigmoidf(z3)
-        z4 = np.dot(a3,w3)
-        yHat = sigmoidf(z4)
-        # Back Propagate Errors
-        yHat_error = y-yHat
-        yHat_delta = yHat_error * sigmoidf_prime(yHat)
-        a3_error = np.dot(yHat_delta,w3.T)
-        a3_delta = a3_error * sigmoidf_prime(a3)
-        a2_error = np.dot(a3_delta,w2.T)
-        a2_delta = a2_error * sigmoidf_prime(a2)
-        w3_delta = np.dot(a3.T,yHat_delta)
-        w2_delta = np.dot(a2.T,a3_delta)
-        w1_delta = np.dot(X.T,a2_delta)
-        # Adjust weights
-        w1 = w1 + w1_delta
-        w2 = w2 + w2_delta
-        w3 = w3 + w3_delta
+        for j in range(len(X)):
+            x = np.array([X[j]])
+            # Feed Forward
+            z2 = np.dot(x,w1)
+            a2 = sigmoidf(z2)
+            z3 = np.dot(a2,w2)
+            a3 = sigmoidf(z3)
+            z4 = np.dot(a3,w3)
+            yHat = sigmoidf(z4)
+            # Back Propagate Errors
+            yHat_error = y[j]-yHat
+            yHat_delta = yHat_error * sigmoidf_prime(yHat)
+            a3_error = np.dot(yHat_delta,w3.T)
+            a3_delta = a3_error * sigmoidf_prime(a3)
+            a2_error = np.dot(a3_delta,w2.T)
+            a2_delta = a2_error * sigmoidf_prime(a2)
+            w3_delta = np.dot(a3.T,yHat_delta)
+            w2_delta = np.dot(a2.T,a3_delta)
+            w1_delta = np.dot(x.T,a2_delta)
+            # Adjust weights
+            w1 = w1 + w1_delta
+            w2 = w2 + w2_delta
+            w3 = w3 + w3_delta
 
     ## Return trained matrices
     return tuple([w1, w2, w3])
