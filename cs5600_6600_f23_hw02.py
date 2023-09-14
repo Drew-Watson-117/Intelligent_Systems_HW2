@@ -17,7 +17,7 @@ def sigmoidf(x):
     return 1 / (1 + np.exp(-1 * x))
 
 def sigmoidf_prime(x):
-    return sigmoidf(x) * (1 - sigmoidf(x))
+    return x * (1 - x)
 
 # persists object obj to a file with pickle.dump()
 def save(obj, file_name):
@@ -98,12 +98,6 @@ def train_3_layer_nn(numIters, X, y, build):
         # Adjust weights
         w1 = w1 + w1_delta
         w2 = w2 + w2_delta
-
-    # print(f"X: {X}")
-    # print(f"w1: {w1}")
-    # print(f"w2: {w2}")
-    # print(f"yHat: {yHat}")
-    # print(f"y: {y}")
 
     ## Return trained matrices
     return tuple([w1, w2])
