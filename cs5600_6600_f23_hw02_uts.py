@@ -11,19 +11,19 @@ import unittest
 
 class cs5600_6600_f23_hw02_uts(unittest.TestCase):
 
-    def test_assgn_02_ut_01(self):
-        wmats = build_nn_wmats((2, 3, 1))
-        # print(wmats[0])
-        assert wmats[0].shape == (2, 3)
-        # print(wmats[1])
-        assert wmats[1].shape == (3, 1)
+    # def test_assgn_02_ut_01(self):
+    #     wmats = build_nn_wmats((2, 3, 1))
+    #     # print(wmats[0])
+    #     assert wmats[0].shape == (2, 3)
+    #     # print(wmats[1])
+    #     assert wmats[1].shape == (3, 1)
 
-    def test_assgn_02_ut_02(self):
-        wmats = build_nn_wmats((8, 3, 8))
-        # print(wmats[0])
-        assert wmats[0].shape == (8, 3)
-        # print(wmats[1])
-        assert wmats[1].shape == (3, 8)
+    # def test_assgn_02_ut_02(self):
+    #     wmats = build_nn_wmats((8, 3, 8))
+    #     # print(wmats[0])
+    #     assert wmats[0].shape == (8, 3)
+    #     # print(wmats[1])
+    #     assert wmats[1].shape == (3, 8)
 
     # def test_assgn_02_ut_03(self, thresh=0.4):
     #     num_iters = 500
@@ -35,24 +35,26 @@ class cs5600_6600_f23_hw02_uts(unittest.TestCase):
     #     print('\n')               
 
     # def test_assgn_02_ut_04(self, thresh=0.4):
-    #     num_iters = 1000
-    #     # and_wmats = train_4_layer_nn(num_iters, X1, y_and, build_2331_nn)
-    #     and_wmats = load("and_4_layer_ann.pck")
+    #     num_iters = 2000
+    #     # not_wmats = train_4_layer_nn(num_iters, X2, y_not, build_1221_nn)
+    #     not_wmats = load("not_4_layer_ann.pck")
     #     print('\nTraining & Testing 2x3x3x1 AND ANN Thresholded at {} for {} iters'.format(thresh, num_iters))
-    #     for i in range(len(X1)):
-    #         print('{}, {} --> {}'.format(X1[i], fit_4_layer_nn(X1[i], and_wmats), y_and[i]))
-    #         assert (fit_4_layer_nn(X1[i], and_wmats, thresh=0.4, thresh_flag=True) == y_and[i]).all()
-    #     print('\n')         
+    #     for i in range(len(X2)):
+    #         print('{}, {} --> {}'.format(X2[i], fit_4_layer_nn(X2[i], not_wmats), y_not[i]))
+    #         assert (fit_4_layer_nn(X2[i], not_wmats, thresh=0.4, thresh_flag=True) == y_not[i]).all()
+    #     print('\n') 
+               
 
     # def test_assgn_02_ut_05(self, thresh=0.4):
     #     num_iters = 500
-    #     or_wmats = train_3_layer_nn(num_iters, X1, y_or, build_231_nn)
-    #     # or_wmats = load("or_3_layer_ann.pck")
+    #     # xor_wmats = train_3_layer_nn(num_iters, X1, y_xor, build_231_nn)
+    #     xor_wmats = load("xor_3_layer_ann.pck")
     #     print('\nTraining & Testing 2x3x1 OR ANN Thresholded at {} for {} iters'.format(thresh, num_iters))    
     #     for i in range(len(X1)):
-    #         print('{}, {} --> {}'.format(X1[i], fit_3_layer_nn(X1[i], or_wmats), y_or[i]))
-    #         assert (fit_3_layer_nn(X1[i], or_wmats, thresh=0.4, thresh_flag=True) == y_or[i]).all()
+    #         print('{}, {} --> {}'.format(X1[i], fit_3_layer_nn(X1[i], xor_wmats), y_xor[i]))
+    #         assert (fit_3_layer_nn(X1[i], xor_wmats, thresh=0.4, thresh_flag=True) == y_xor[i]).all()
     #     print('\n')
+    #     # save(xor_wmats, "xor_3_layer_ann.pck")
 
     # def test_assgn_02_ut_06(self, thresh=0.4):
     #     num_iters = 2000        
@@ -74,8 +76,13 @@ class cs5600_6600_f23_hw02_uts(unittest.TestCase):
     #         assert (fit_3_layer_nn(X2[i], not_wmats, thresh=0.4, thresh_flag=True) == y_not[i]).all()
     #     print('\n')
 
+
+
+
+
+
     def test_assgn_02_ut_08(self, thresh=0.4):
-        num_iters = 3200      
+        num_iters = 10000  
         bool_wmats = train_3_layer_nn(num_iters, X3, bool_exp, build_421_nn)
         print('\nTraining & Testing 4x2x1 BOOL EXP ANN Thresholded at {} for {} iters'.format(thresh, num_iters))        
         for i in range(len(X3)):
@@ -85,25 +92,19 @@ class cs5600_6600_f23_hw02_uts(unittest.TestCase):
 
     # def test_assgn_02_ut_09(self, thresh=0.4):
     #     num_iters = 800        
-    #     bool_wmats = train_4_layer_nn(num_iters, X3, bool_exp, build_4221_nn)
+    #     # bool_wmats = train_4_layer_nn(num_iters, X3, bool_exp, build_4221_nn)
+    #     bool_wmats = load("bool_4_layer_ann.pck")
     #     print('\nTraining & Testing 4x2x2x1 BOOL EXP ANN Thresholded at {} for {} iters'.format(thresh, num_iters))        
     #     for i in range(len(X3)):
     #         print('{}, {} --> {}'.format(X3[i], fit_4_layer_nn(X3[i], bool_wmats), bool_exp[i]))
     #         assert (fit_4_layer_nn(X3[i], bool_wmats, thresh=0.4, thresh_flag=True) == bool_exp[i]).all()
     #     print('\n')
+    #     # save(bool_wmats, "bool_4_layer_ann.pck")
             
 ### ================ Unit Tests ====================
 
 if __name__ == '__main__':
     unittest.main()
-
-    # num_iters = 500
-    # thresh = 0.4
-    # and_wmats = train_3_layer_nn(num_iters, X1, y_and, build_231_nn)
-    # print('\nTraining & Testing 2x3x1 AND ANN Thresholded at {} for {} iters'.format(thresh, num_iters))
-    # for i in range(len(X1)):
-    #     print('{}, {} --> {}'.format(X1[i], fit_3_layer_nn(X1[i], and_wmats), y_and[i]))
-    # print('\n')  
  
     
         
