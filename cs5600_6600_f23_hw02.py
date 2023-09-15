@@ -71,6 +71,11 @@ def build_121_nn():
 def build_1221_nn():
     return build_nn_wmats((1, 2, 2, 1))
 
+
+# Added this build function for bool_3_layer_ann.pck
+def build_431_nn():
+    return build_nn_wmats((4,3,1))
+
 ## Training 3-layer neural net.
 ## X is the matrix of inputs
 ## y is the matrix of ground truths.
@@ -172,3 +177,5 @@ def fit_4_layer_nn(x, wmats, thresh=0.4, thresh_flag=False):
                 yHat[i] = 1
     return yHat
 
+# For bool_3_layer_ann.pck, I used 3 hidden neurons and 1000 iterations.
+# For bool_4_layer_ann.pck, I used 2 hidden layers of 2 neurons and 800 iterations

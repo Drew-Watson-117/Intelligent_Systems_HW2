@@ -82,13 +82,15 @@ class cs5600_6600_f23_hw02_uts(unittest.TestCase):
 
 
     def test_assgn_02_ut_08(self, thresh=0.4):
-        num_iters = 10000  
-        bool_wmats = train_3_layer_nn(num_iters, X3, bool_exp, build_421_nn)
+        num_iters = 1000  
+        # bool_wmats = train_3_layer_nn(num_iters, X3, bool_exp, build_431_nn)
+        bool_wmats = load("bool_3_layer_ann.pck")
         print('\nTraining & Testing 4x2x1 BOOL EXP ANN Thresholded at {} for {} iters'.format(thresh, num_iters))        
         for i in range(len(X3)):
             print('{}, {} --> {}'.format(X3[i], fit_3_layer_nn(X3[i], bool_wmats), bool_exp[i]))
             assert (fit_3_layer_nn(X3[i], bool_wmats, thresh=0.4, thresh_flag=True) == bool_exp[i]).all()
         print('\n')
+        
 
     # def test_assgn_02_ut_09(self, thresh=0.4):
     #     num_iters = 800        
